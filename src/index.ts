@@ -36,7 +36,7 @@ const setupHolder = () => {
     })
   )
 
-  holder.setOutboundTransporter(new HttpOutboundTransporter())
+  holder.registerOutboundTransporter(new HttpOutboundTransporter())
 
   return holder
 }
@@ -64,38 +64,29 @@ const setupIssuer = () => {
     })
   )
 
-  issuer.setOutboundTransporter(new HttpOutboundTransporter())
+  issuer.registerOutboundTransporter(new HttpOutboundTransporter())
 
   return issuer
 }
 
 const registerSchema = (agent: Agent) =>
   agent.ledger.registerSchema({
-    name: `gym_membership_${new Date().getUTCMilliseconds()}`,
+    name: `Gym membership ${new Date().getUTCMilliseconds()}`,
     version: '1.0.0',
-    attributes: ['start_date', 'tier'],
+    attributes: ['Start date', 'Tier'],
   })
 
 const registerCredentialDefinition = (agent: Agent, schema: Schema) =>
   agent.ledger.registerCredentialDefinition({
     schema,
-    signatureType: 'CL',
     tag: 'latest',
     supportRevocation: false,
   })
 
 const offerCredential = async (agent: Agent, credentialDefinitionId: string, connectionId: string) => {
-  const credentialPreview = new CredentialPreview({
-    attributes: [
-      new CredentialPreviewAttribute({
-        name: 'start_date',
-        value: '19/08/2021',
-      }),
-      new CredentialPreviewAttribute({
-        name: 'tier',
-        value: 'gold',
-      }),
-    ],
+  const credentialPreview = CredentialPreview.fromRecord({
+    'Start date': '20/08/2021',
+    Tier: 'gold',
   })
 
   await agent.credentials.offerCredential(connectionId, {

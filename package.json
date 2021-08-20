@@ -9,8 +9,8 @@
     "start": "ts-node src/index.ts"
   },
   "dependencies": {
-    "@aries-framework/core": "^0.1.0-alpha.251",
-    "@aries-framework/node": "^0.1.0-alpha.251"
+    "@aries-framework/core": "^0.1.0-alpha.253",
+    "@aries-framework/node": "^0.1.0-alpha.253"
   },
   "devDependencies": {
     "@types/indy-sdk": "^1.16.6",
