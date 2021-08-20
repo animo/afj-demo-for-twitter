@@ -14,3 +14,5 @@ git clone https://github.com/animo/afj-demo-for-twitter
 cd afj-demo-for-twitter
 docker build -t afj-demo . && docker run -it --rm afj-demo
 ```
+
+If you have docker and git installed you can also run the above commands directly on your computer. The Play with VON just provides a already setup environment to run the demo.
